@@ -10,12 +10,15 @@ export const view = (props: any) => {
     return <div onClick={props.onTabClick} data-tab={tab.code}>{tab.config.label}</div>
   });
 
-  const tabs = tabViews.map((tab: any) => {
-    return <tab.viewModule />
+  const tab = tabViews.find((tab: any) => {
+    return tab.code === props.currentTab;
   });
 
+  console.log(tab);
+
   return <div>
-    <div className="tab-selector">{tabSelectors}</div>
+    <div className="tabs-selector">{tabSelectors}</div>
+    <tab.viewModule />
   </div>;
 }
 
@@ -38,5 +41,5 @@ export const connector = connect(
 );
 
 const currentTabSelector = (state: any) => {
-  return state.tabs && state.tabs.currentTab ? state.tabs.currentTab : null;
+  return state.page && state.page.currentTab ? state.page.currentTab : null;
 }
