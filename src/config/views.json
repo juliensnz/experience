@@ -1,0 +1,66 @@
+[{
+  "code": "channel",
+  "view": "view/channel/channel",
+  "connector": "view/channel/channel"
+},
+{
+  "code": "channel/state-listener",
+  "view": "view/common/state-listener",
+  "parent": "channel",
+  "section": "meta"
+},
+{
+  "code": "channel/button/save",
+  "view": "view/common/save",
+  "parent": "channel",
+  "section": "buttons"
+},
+{
+  "code": "channel/button/delete",
+  "view": "view/common/delete",
+  "parent": "channel",
+  "section": "buttons"
+},
+{
+  "code": "channel/tabs",
+  "view": "view/common/tabs",
+  "connector": "view/common/tabs",
+  "parent": "channel",
+  "section": "container"
+},
+{
+  "code": "channel/tabs/properties",
+  "view": "view/channel/properties",
+  "parent": "channel/tabs",
+  "section": "container",
+  "config": {
+    "label": "Properties"
+  }
+},
+{
+  "code": "channel/tabs/history",
+  "view": "view/common/tabs/history",
+  "parent": "channel/tabs",
+  "section": "container",
+  "config": {
+    "label": "History"
+  }
+},
+{
+  "code": "channel/tabs/properties/general",
+  "view": "view/channel/properties/general",
+  "parent": "channel/tabs/properties",
+  "section": "container",
+  "config": {
+    "label": "General properties"
+  }
+},
+{
+  "code": "channel/tabs/properties/conversion",
+  "view": "view/channel/properties/conversion",
+  "parent": "channel/tabs/properties",
+  "section": "container",
+  "config": {
+    "label": "Pick a conversion unit for each metric attribute that will be used during product export"
+  }
+}]
