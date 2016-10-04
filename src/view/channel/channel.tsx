@@ -16,7 +16,7 @@ export const view = ({ label, childViews }: { label: any, childViews: any }) => 
       </div>
     </div>
     <div className="container">
-    {childrenForSection(childViews, 'container')}
+      {childrenForSection(childViews, 'container')}
     </div>
   </div>
 }

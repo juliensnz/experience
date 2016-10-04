@@ -12,12 +12,14 @@
 {
   "code": "channel/button/save",
   "view": "view/common/save",
+  "connector": "view/common/save",
   "parent": "channel",
   "section": "buttons"
 },
 {
   "code": "channel/button/delete",
   "view": "view/common/delete",
+  "connector": "view/common/delete",
   "parent": "channel",
   "section": "buttons"
 },
@@ -49,6 +51,7 @@
 {
   "code": "channel/tabs/properties/general",
   "view": "view/channel/properties/general",
+  "connector": "view/channel/properties/general",
   "parent": "channel/tabs/properties",
   "section": "container",
   "config": {

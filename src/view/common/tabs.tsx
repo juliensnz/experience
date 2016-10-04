@@ -10,11 +10,9 @@ export const view = (props: any) => {
     return <div onClick={props.onTabClick} data-tab={tab.code}>{tab.config.label}</div>
   });
 
-  const tab = tabViews.find((tab: any) => {
-    return tab.code === props.currentTab;
+  const tab = tabViews.find((tab: any, index: number) => {
+    return (null === props.currentTab && 0 === index) || tab.code === props.currentTab;
   });
-
-  console.log(tab);
 
   return <div>
     <div className="tabs-selector">{tabSelectors}</div>

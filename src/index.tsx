@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import App from './App';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import modelReducer from './reducer/model';
 import tabsReducer from './reducer/view/tabs';
@@ -21,8 +21,11 @@ const store = createStore(
       currentTab: tabsReducer
     })
   }),
-  applyMiddleware(logger),
-  myWindow.devToolsExtension && myWindow.devToolsExtension()
+  {},
+  compose(
+    applyMiddleware(logger),
+    myWindow.devToolsExtension && myWindow.devToolsExtension()
+  )
 );
 
 const root: any = document.getElementById('root');

@@ -40,5 +40,11 @@ export default (state: any = {}, action: any = {}) => {
     };
   }
 
+  switch (action.type) {
+    case 'FIELD_CHANGED':
+      state = Object.assign({}, state, {[action.field]: action.value})
+    break;
+  }
+
   return state;
 }
