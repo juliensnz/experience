@@ -66,4 +66,89 @@
   "config": {
     "label": "Pick a conversion unit for each metric attribute that will be used during product export"
   }
+},
+{
+  "code": "pim/product/edit/form",
+  "view": "view/product/edit/form",
+  "connector": "view/product/edit/form"
+},
+{
+  "code": "pim/product/edit/state-listener",
+  "view": "view/common/state-listener",
+  "parent": "pim/product/edit/form",
+  "section": "meta"
+},
+{
+  "code": "pim/product/edit/form/button/save",
+  "view": "view/common/save",
+  "parent": "pim/product/edit/form",
+  "section": "buttons"
+},
+{
+  "code": "pim/product/edit/form/button/delete",
+  "view": "view/common/delete",
+  "parent": "pim/product/edit/form",
+  "section": "buttons"
+},
+{
+  "code": "pim/product/edit/tabs",
+  "view": "view/common/tabs",
+  "connector": "view/common/tabs",
+  "parent": "pim/product/edit/form",
+  "section": "container"
+},
+{
+  "code": "pim/product/edit/tabs/attributes",
+  "view": "view/product/edit/tabs/attributes",
+  "connector": "view/product/edit/tabs/attributes",
+  "parent": "pim/product/edit/tabs",
+  "section": "container",
+  "config": {
+    "label": "Attributes"
+  }
+},
+{
+  "code": "pim/product/edit/tabs/categories",
+  "view": "view/product/edit/tabs/categories",
+  "parent": "pim/product/edit/tabs",
+  "section": "container",
+  "config": {
+    "label": "Categories"
+  }
+},
+{
+  "code": "pim/product/edit/tabs/history",
+  "view": "view/common/tabs/history",
+  "parent": "pim/product/edit/tabs",
+  "section": "container",
+  "config": {
+    "label": "History"
+  }
+},
+{
+  "code": "pim/product/edit/tabs/attributes/attribute-group",
+  "view": "view/product/edit/tabs/attributes/attribute-group",
+  "connector": "view/product/edit/tabs/attributes/attribute-group",
+  "parent": "pim/product/edit/tabs/attributes",
+  "section": "sidebar"
+},
+{
+  "code": "pim/product/edit/tabs/attributes/locale-switcher",
+  "view": "view/common/context/locale-switcher",
+  "connector": "view/common/context/locale-switcher",
+  "parent": "pim/product/edit/tabs/attributes",
+  "section": "context",
+  "config": {
+    "target": "catalogLocale"
+  }
+},
+{
+  "code": "pim/product/edit/tabs/attributes/locale-switcher",
+  "view": "view/common/context/locale-switcher",
+  "connector": "view/common/context/locale-switcher",
+  "parent": "pim/product/edit/tabs/attributes",
+  "section": "context",
+  "config": {
+    "target": "catalogLocale"
+  }
 }]

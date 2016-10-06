@@ -14,6 +14,10 @@ export const view = (props: any) => {
     return (null === props.currentTab && 0 === index) || tab.code === props.currentTab;
   });
 
+  if (undefined === tab) {
+    return null;
+  }
+
   return <div>
     <div className="tabs-selector">{tabSelectors}</div>
     <tab.viewModule />

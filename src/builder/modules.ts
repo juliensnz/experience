@@ -16,6 +16,11 @@ import * as module_6 from 'pim/view/common/tabs/history';
 import * as module_7 from 'pim/view/channel/properties';
 import * as module_8 from 'pim/view/channel/properties/general';
 import * as module_9 from 'pim/view/channel/properties/conversion';
+import * as module_10 from 'pim/view/product/edit/form';
+import * as module_11 from 'pim/view/product/edit/tabs/attributes';
+import * as module_12 from 'pim/view/product/edit/tabs/categories';
+import * as module_13 from 'pim/view/product/edit/tabs/attributes/attribute-group';
+import * as module_14 from 'pim/view/common/context/locale-switcher';
 
 interface config {
   string: any
@@ -30,7 +35,12 @@ const map: any = {
   'view/common/tabs/history': module_6,
   'view/channel/properties': module_7,
   'view/channel/properties/general': module_8,
-  'view/channel/properties/conversion': module_9
+  'view/channel/properties/conversion': module_9,
+  'view/product/edit/form': module_10,
+  'view/product/edit/tabs/attributes': module_11,
+  'view/product/edit/tabs/categories': module_12,
+  'view/product/edit/tabs/attributes/attribute-group': module_13,
+  'view/common/context/locale-switcher': module_14
 }
 
 export default map;
