@@ -2,7 +2,7 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { Locale } from 'pim/model/catalog/locale'
 import { Channel } from 'pim/model/catalog/channel'
-import { fetchAll } from 'pim/fetcher/locale'
+import { fetchLocalesIfNeeded } from 'pim/action/locale'
 
 export class view extends React.Component<
   {dispatch: any, localeSwitched: any, locales: Locale[], locale: string, config: any},
@@ -45,16 +45,6 @@ export const connector = connect(
     };
   }
 );
-
-const fetchLocalesIfNeeded = () => (dispatch: any, getState: any) => {
-  if (0 === getState().catalog.locales.length) {
-    dispatch({type: 'FETCH_LOCALE_REQUEST'});
-
-    fetchAll().then((locales) => {
-      dispatch({type: 'FETCH_LOCALE_SUCCESS', locales})
-    })
-  }
-}
 
 const getlocales = (state: any) => {
   const currentChannel: ( Channel | null ) = getCurrentChannel(state);

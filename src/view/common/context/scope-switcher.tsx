@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { Channel } from 'pim/model/catalog/channel'
-import { fetchAll } from 'pim/fetcher/channel'
+import { fetchChannelsIfNeeded } from 'pim/action/channel'
 
 export class view extends React.Component<
   {dispatch: any, channelSwitched: any, channels: Channel[], channel: string, config: any},
@@ -44,13 +44,3 @@ export const connector = connect(
     };
   }
 );
-
-const fetchChannelsIfNeeded = () => (dispatch: any, getState: any) => {
-  if (0 === getState().catalog.channels.length) {
-    dispatch({type: 'FETCH_CHANNEL_REQUEST'});
-
-    fetchAll().then((channels) => {
-      dispatch({type: 'FETCH_CHANNEL_SUCCESS', channels})
-    })
-  }
-}

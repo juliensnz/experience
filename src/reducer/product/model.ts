@@ -15,8 +15,6 @@ export default (state: any = {}, action: any = {}) => {
 
       state = newState;
     break;
-    case 'FETCH_PRODUCT_SUCCESS':
-      state = action.product;
   }
 
   return state;

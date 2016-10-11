@@ -5,6 +5,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import modelReducer from './reducer/product/model';
+import productReducer from './reducer/product/product';
 import localeReducer from './reducer/catalog/locale';
 import channelReducer from './reducer/catalog/channel';
 import attributeGroupsReducer from './reducer/catalog/attribute-group';
@@ -21,21 +22,24 @@ require('pim/assets/style/style.less');
 const myWindow: any = window;
 
 const logger = createLogger();
-const store = createStore(
-  combineReducers({
-    model: modelReducer,
-    context: contextReducer,
-    page: combineReducers({
-      currentTab: tabsReducer
-    }),
-    catalog: combineReducers({
-      channels: channelReducer,
-      locales: localeReducer,
-      attributeGroups: attributeGroupsReducer,
-      family: familyReducer,
-      attribute: attributeReducer
-    })
-  }),
+const store = createStore((state: any, action: any) => {
+    state = productReducer(state, action);
+
+    return combineReducers({
+      model: modelReducer,
+      context: contextReducer,
+      page: combineReducers({
+        currentTab: tabsReducer
+      }),
+      catalog: combineReducers({
+        channels: channelReducer,
+        locales: localeReducer,
+        attributeGroups: attributeGroupsReducer,
+        families: familyReducer,
+        attributes: attributeReducer
+      })
+    })(state, action);
+  },
   {},
   compose(
     applyMiddleware(thunk, logger),
