@@ -24,8 +24,7 @@ module.exports = {
     root: path.resolve(__dirname),
     extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js", ".json"],
     alias: {
-      'pim': 'src',
-      'view/builder': 'src/builder'
+      'pim': 'src'
     },
   },
   module: {
