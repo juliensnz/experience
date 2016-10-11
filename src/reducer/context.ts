@@ -3,7 +3,8 @@ export default (state: any = {}, action: any = {}) => {
     state = {
       uiLocale: 'en_US',
       catalogLocale: 'en_US',
-      catalogScope: 'mobile'
+      catalogScope: 'mobile',
+      attributeGroup: 'marketing'
     };
   }
 
@@ -11,6 +12,11 @@ export default (state: any = {}, action: any = {}) => {
     case 'LOCALE_SWITCHED':
       state = Object.assign({}, state, {[action.target]: action.locale})
     break;
+    case 'CHANNEL_SWITCHED':
+      state = Object.assign({}, state, {[action.target]: action.channel})
+    break;
+    case 'ATTRIBUTE_GROUP_SELECTED':
+      state = Object.assign({}, state, {attributeGroup: action.group})
   }
 
   return state;

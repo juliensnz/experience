@@ -143,12 +143,12 @@
   }
 },
 {
-  "code": "pim/product/edit/tabs/attributes/locale-switcher",
-  "view": "view/common/context/locale-switcher",
-  "connector": "view/common/context/locale-switcher",
+  "code": "pim/product/edit/tabs/attributes/scope-switcher",
+  "view": "view/common/context/scope-switcher",
+  "connector": "view/common/context/scope-switcher",
   "parent": "pim/product/edit/tabs/attributes",
   "section": "context",
   "config": {
-    "target": "catalogLocale"
+    "target": "catalogScope"
   }
 }]

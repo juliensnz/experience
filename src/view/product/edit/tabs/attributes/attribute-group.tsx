@@ -1,24 +1,34 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { getLabel } from 'pim/utils/i18n';
+import { fetchAll } from 'pim/fetcher/attribute-group';
 
-export const view = (
-  {
-    groups,
-    childViews,
-    currentGroup,
-    uiLocale,
-    onGroupSelected
-  }:
+export class view extends React.Component<
   {
     groups: any,
     onGroupSelected: any,
     currentGroup: string,
     uiLocale: string,
-    childViews: any
+    childViews: any,
+    dispatch: any
+  },
+  {}
+> {
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(fetchGroupsIfNeeded());
   }
-) => {
-  const groupViews = groups.map((group: any) => {
+
+  render() {
+    const {
+      groups,
+      childViews,
+      currentGroup,
+      uiLocale,
+      onGroupSelected
+    } = this.props;
+
+    const groupViews = groups.map((group: any) => {
     const className = currentGroup === group.code ? 'selected' : '';
     return <li
       className={ className }
@@ -30,12 +40,13 @@ export const view = (
   return <ul>
     { groupViews }
   </ul>;
+  }
 }
 
 export const connector = connect((state: any) => {
   return {
-    groups: state.attributeGroups.groups,
-    current: state.attributeGroups.current,
+    groups: state.catalog.attributeGroups ? state.catalog.attributeGroups : [],
+    current: state.context.attributeGroup,
     uiLocale: state.context.uiLocale
   }
 }, (dispatch: any) => {
@@ -45,6 +56,17 @@ export const connector = connect((state: any) => {
         type: 'ATTRIBUTE_GROUP_SELECTED',
         group: attributeGroupCode
       })
-    }
+    },
+    dispatch
   }
 });
+
+const fetchGroupsIfNeeded = () => (dispatch: any, getState: any) => {
+  if (0 === getState().catalog.attributeGroups.length) {
+    dispatch({type: 'FETCH_GROUP_REQUEST'});
+
+    fetchAll().then((groups) => {
+      dispatch({type: 'FETCH_GROUP_SUCCESS', groups})
+    })
+  }
+}

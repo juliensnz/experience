@@ -21,6 +21,7 @@ import * as module_11 from 'pim/view/product/edit/tabs/attributes';
 import * as module_12 from 'pim/view/product/edit/tabs/categories';
 import * as module_13 from 'pim/view/product/edit/tabs/attributes/attribute-group';
 import * as module_14 from 'pim/view/common/context/locale-switcher';
+import * as module_15 from 'pim/view/common/context/scope-switcher';
 
 interface config {
   string: any
@@ -40,7 +41,8 @@ const map: any = {
   'view/product/edit/tabs/attributes': module_11,
   'view/product/edit/tabs/categories': module_12,
   'view/product/edit/tabs/attributes/attribute-group': module_13,
-  'view/common/context/locale-switcher': module_14
+  'view/common/context/locale-switcher': module_14,
+  'view/common/context/scope-switcher': module_15
 }
 
 export default map;

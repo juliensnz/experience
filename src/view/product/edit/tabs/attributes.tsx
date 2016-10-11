@@ -10,9 +10,9 @@ export const view = ({ values, childViews, onFieldChange }: { values: Value[], c
         <input
           value={value.data || ''}
           onChange={ onFieldChange }
-          data-field={value.code}
-          data-locale={value.locale}
-          data-scope={value.scope}
+          data-field={ value.code }
+          data-locale={ value.locale }
+          data-scope={ value.scope }
         />
       </div>;
     }
@@ -49,9 +49,17 @@ export const connector = connect(
 );
 
 const getValues = (state: any) : Value[] => {
-  const group = state.attributeGroups.groups.find((group: any) => {
-    return group.code === state.attributeGroups.selected;
+  if (0 === state.catalog.attributeGroups.length) {
+    return [];
+  }
+
+  const group = state.catalog.attributeGroups.find((group: any) => {
+    return group.code === state.context.attributeGroup;
   });
+
+  if (!state.model.values) {
+    return [];
+  }
 
   return group.attributes.map((attributeCode: string) => {
     const values = state.model.values[attributeCode]

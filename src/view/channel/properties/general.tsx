@@ -15,7 +15,6 @@ export const view = (props: any) => {
 
 export const connector = connect(
   (state: any) => {
-    console.log(state);
     return {
       model: state.model
     }
