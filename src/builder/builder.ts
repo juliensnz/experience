@@ -1,8 +1,8 @@
-import { load } from './registry'
+import { load } from 'pim/builder/registry'
 import { connect } from 'react-redux';
 
 declare var require: any;
-var json = require('../config/views.json');
+var json = require('pim/config/views.json');
 
 interface ModuleConfiguration {
   code: string,
@@ -18,7 +18,7 @@ const build = (moduleName: string) => {
   });
 
   if (undefined === moduleConf) {
-    throw Error (`Model ${moduleName} was not found. Are you sure that you registred it well?`);
+    throw Error (`Module ${moduleName} was not found. Are you sure that you registered it well?`);
   }
 
   const builtView: any     = buildView(() => {}, moduleConf);

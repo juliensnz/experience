@@ -1,11 +1,17 @@
-var path              = require('path');
-var webpack           = require('webpack');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var path                     = require('path');
+var webpack                  = require('webpack');
+var ExtractTextPlugin        = require('extract-text-webpack-plugin');
+var CircularDependencyPlugin = require('circular-dependency-plugin');
 
 module.exports = {
   devtool: 'hot-reload-source-map',
   // devtool: 'eval',
-  entry: ['./src/index.tsx', 'webpack-dev-server/client?http://localhost:3000', 'webpack/hot/only-dev-server', 'whatwg-fetch'],
+  entry: [
+    './src/index.tsx',
+    'webpack-dev-server/client?http://localhost:3000',
+    'webpack/hot/only-dev-server',
+    'whatwg-fetch'
+  ],
   output: {
     path: path.join(__dirname, 'static'),
     filename: 'bundle.js',
@@ -18,7 +24,11 @@ module.exports = {
         'NODE_ENV': JSON.stringify('production')
       }
     }),
-    new ExtractTextPlugin("[name].css")
+    new ExtractTextPlugin("[name].css"),
+    new CircularDependencyPlugin({
+      exclude: /node_modules/,
+      failOnError: true
+    })
   ],
   resolve: {
     root: path.resolve(__dirname),
