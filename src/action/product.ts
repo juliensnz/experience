@@ -21,7 +21,7 @@ export const fetchProductIfNeeded = (identifier: (string | number)) => (dispatch
           return dispatch(fetchAttributesIfNeeded(
             [...new Set([...Object.keys(product.values), ...family.attributes])]
           )).then((attributes: Attribute[]) => {
-            dispatch({type: 'FETCH_PRODUCT_SUCCESS', product, family, channels, locales, attributes});
+            dispatch({type: 'FETCH_PRODUCT_SUCCESS', product});
 
             return product;
           });

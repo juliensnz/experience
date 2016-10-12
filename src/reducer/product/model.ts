@@ -3,15 +3,17 @@ import { Value } from 'pim/model/product/value'
 export default (state: any = {}, action: any = {}) => {
   switch (action.type) {
     case 'FIELD_CHANGED':
-      const newState = Object.assign({}, state);
+      let newState = Object.assign({}, state);
+      const value = {
+        data: action.data,
+        locale: action.locale,
+        scope: action.scope
+      };
 
-      newState.values[action.field] = newState.values[action.field].map((value: Value) => {
-        if (value.locale !== action.locale || value.scope !== action.scope) {
-          return value
-        }
-
-        return Object.assign({}, value, {data: action.value});
-      });
+      const values = state.values[action.field] ? state.values[action.field].filter((value: Value) => {
+        return value.locale !== action.locale || value.scope !== action.scope;
+      }) : [];
+      newState.values[action.field] = [...values, value];
 
       state = newState;
     break;
