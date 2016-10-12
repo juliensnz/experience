@@ -2,9 +2,10 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { childrenForSection } from 'pim/view/util/child';
 import { Value } from 'pim/model/product/value'
+import { Attribute } from 'pim/model/catalog/attribute'
 
 export const view = ({ values, childViews, onFieldChange }: { values: Value[], childViews: any, onFieldChange: any }) => {
-  const valueFields = values.map((value) => {
+  const valueFields = values.filter((value: Value) => null !== value).map((value: Value) => {
     return <div>
         { value.code } :
         <input
@@ -39,7 +40,7 @@ export const connector = connect(
         dispatch({
           type: 'FIELD_CHANGED',
           field: event.currentTarget.dataset.field,
-          value: event.currentTarget.value,
+          data: event.currentTarget.value,
           locale: event.currentTarget.dataset.locale ? event.currentTarget.dataset.locale : null,
           scope: event.currentTarget.dataset.scope ? event.currentTarget.dataset.scope : null
         });
@@ -62,6 +63,12 @@ const getValues = (state: any) : Value[] => {
   }
 
   return group.attributes.map((attributeCode: string) => {
+    const attribute = state.catalog.attributes.find((attribute: Attribute) => attribute.code === attributeCode);
+
+    if (!attribute) {
+      return null;
+    }
+
     const values = state.model.values[attributeCode]
     const value = values ? state.model.values[attributeCode].find((value: Value) => {
       const locale = null === value.locale || value.locale === state.context.catalogLocale;
@@ -73,8 +80,8 @@ const getValues = (state: any) : Value[] => {
     return Object.assign(
       {
         code: attributeCode,
-        locale: null,
-        scope: null,
+        locale: attribute.localizable ? state.context.catalogLocale : null,
+        scope: attribute.scopable ? state.context.catalogScope : null,
         data: null
       },
       value ? value : {}

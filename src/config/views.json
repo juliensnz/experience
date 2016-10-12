@@ -81,6 +81,7 @@
 {
   "code": "pim/product/edit/form/button/save",
   "view": "view/common/save",
+  "connector": "view/common/save",
   "parent": "pim/product/edit/form",
   "section": "buttons"
 },
