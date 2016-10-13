@@ -15,5 +15,6 @@
   "view/common/context/locale-switcher": "pim/view/common/context/locale-switcher",
   "view/common/context/scope-switcher": "pim/view/common/context/scope-switcher",
   "view/product/field/price-collection": "pim/view/product/field/price-collection",
-  "view/product/field/string": "pim/view/product/field/string"
+  "view/product/field/string": "pim/view/product/field/string",
+  "view/product/edit/tabs/attributes/field": "pim/view/product/edit/tabs/attributes/field"
 }

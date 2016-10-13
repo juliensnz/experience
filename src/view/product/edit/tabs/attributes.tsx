@@ -5,9 +5,13 @@ import { Value } from 'pim/model/product/value';
 import { Attribute } from 'pim/model/catalog/attribute';
 
 export const view = (
-  { values, childViews, attributes, onFieldChange }:
-  { values: Value[], childViews: any, attributes: Attribute[], onFieldChange: any }
+  { values, childViews, config, attributes, onFieldChange }:
+  { values: Value[], childViews: any, config: any, attributes: Attribute[], onFieldChange: any }
 ) => {
+  const Field = childViews.find((view: any) => {
+    return config.config.fieldView === view.code
+  });
+
   const valueFields = values.filter((value: Value) => null !== value).map((value: Value) => {
     const attribute = attributes.find((attribute: Attribute) => attribute.code === value.code);
 
@@ -15,22 +19,12 @@ export const view = (
       return null;
     }
 
-    const FieldView = childViews.find((view: any) => {
-      return view.section &&
-        'fields' === view.section &&
-        view.attribute_type === attribute.field_type;
-    });
-
-    return <div>
-        { value.code } :
-        <FieldView.viewModule
-          value={value}
-          onFieldChange={ onFieldChange }
-          attribute={ attribute }
-        />
-      </div>;
-    }
-  );
+    return <Field.viewModule
+      value={value}
+      onFieldChange={ onFieldChange }
+      attribute={ attribute }
+    />;
+  }).filter((view: any) => null !== view);
 
   const container = valueFields ? valueFields : null;
 

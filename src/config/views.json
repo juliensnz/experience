@@ -105,7 +105,8 @@
   "parent": "pim/product/edit/tabs",
   "section": "container",
   "config": {
-    "label": "Attributes"
+    "label": "Attributes",
+    "fieldView": "pim/product/edit/tabs/attributes/field"
   }
 },
 {
@@ -154,45 +155,51 @@
   }
 },
 {
+  "code": "pim/product/edit/tabs/attributes/field",
+  "view": "view/product/edit/tabs/attributes/field",
+  "parent": "pim/product/edit/tabs/attributes",
+  "section": "fields"
+},
+{
   "code": "pim/product/edit/tabs/attributes/field/price-collection",
   "view": "view/product/field/price-collection",
   "connector": "view/product/field/price-collection",
-  "parent": "pim/product/edit/tabs/attributes",
+  "parent": "pim/product/edit/tabs/attributes/field",
   "section": "fields",
   "attribute_type": "akeneo-price-collection-field"
 },
 {
   "code": "pim/product/edit/tabs/attributes/field/string",
   "view": "view/product/field/string",
-  "parent": "pim/product/edit/tabs/attributes",
+  "parent": "pim/product/edit/tabs/attributes/field",
   "section": "fields",
   "attribute_type": "akeneo-text-field"
 },
 {
   "code": "pim/product/edit/tabs/attributes/field/string",
   "view": "view/product/field/string",
-  "parent": "pim/product/edit/tabs/attributes",
+  "parent": "pim/product/edit/tabs/attributes/field",
   "section": "fields",
   "attribute_type": "akeneo-textarea-field"
 },
 {
   "code": "pim/product/edit/tabs/attributes/field/string",
   "view": "view/product/field/string",
-  "parent": "pim/product/edit/tabs/attributes",
+  "parent": "pim/product/edit/tabs/attributes/field",
   "section": "fields",
   "attribute_type": "akeneo-multi-select-field"
 },
 {
   "code": "pim/product/edit/tabs/attributes/field/string",
   "view": "view/product/field/string",
-  "parent": "pim/product/edit/tabs/attributes",
+  "parent": "pim/product/edit/tabs/attributes/field",
   "section": "fields",
   "attribute_type": "akeneo-simple-select-field"
 },
 {
   "code": "pim/product/edit/tabs/attributes/field/string",
   "view": "view/product/field/string",
-  "parent": "pim/product/edit/tabs/attributes",
+  "parent": "pim/product/edit/tabs/attributes/field",
   "section": "fields",
   "attribute_type": "akeneo-media-uploader-field"
 }]
