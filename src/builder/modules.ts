@@ -22,10 +22,8 @@ import * as module_12 from 'pim/view/product/edit/tabs/categories';
 import * as module_13 from 'pim/view/product/edit/tabs/attributes/attribute-group';
 import * as module_14 from 'pim/view/common/context/locale-switcher';
 import * as module_15 from 'pim/view/common/context/scope-switcher';
-
-interface config {
-  string: any
-}
+import * as module_16 from 'pim/view/product/grid/grid';
+import * as module_17 from 'pim/view/product/grid/row';
 
 const map: any = {
   'view/channel/channel': module_1,
@@ -42,7 +40,9 @@ const map: any = {
   'view/product/edit/tabs/categories': module_12,
   'view/product/edit/tabs/attributes/attribute-group': module_13,
   'view/common/context/locale-switcher': module_14,
-  'view/common/context/scope-switcher': module_15
+  'view/common/context/scope-switcher': module_15,
+  'view/product/grid/grid': module_16,
+  'view/product/grid/row': module_17
 }
 
 export default map;

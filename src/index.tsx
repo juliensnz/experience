@@ -4,7 +4,8 @@ import App from './App';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import modelReducer from './reducer/product/model';
+import catalogReducer from './reducer/grid/catalog';
+import modelReducer from './reducer/grid/model';
 import localeReducer from './reducer/catalog/locale';
 import channelReducer from './reducer/catalog/channel';
 import attributeGroupsReducer from './reducer/catalog/attribute-group';
@@ -21,19 +22,9 @@ const myWindow: any = window;
 const logger = createLogger();
 const store = createStore(
   combineReducers({
+    catalog: catalogReducer,
     model: modelReducer,
-    context: contextReducer,
-    page: combineReducers({
-      currentTab: tabsReducer
-    }),
-    catalog: combineReducers({
-      channels: channelReducer,
-      locales: localeReducer,
-      attributeGroups: attributeGroupsReducer,
-      family: () => {
-        return {};
-      }
-    })
+    context: contextReducer
   }),
   {},
   compose(

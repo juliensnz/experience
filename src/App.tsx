@@ -1,16 +1,10 @@
-import * as React from 'react';
-import { connect } from 'react-redux'
-import { load } from 'pim/builder/registry'
+import * as React from 'react'
 import build from 'pim/builder/builder'
 
-const ProductView = build('pim/product/edit/form');
+const ProductGrid = build('pim/product/grid/grid');
 
-class App extends React.Component<any, any> {
-  render () {
-    return (
-      <ProductView />
-    );
-  }
-}
+const App = () => (
+  <ProductGrid />
+)
 
 export default App;

@@ -151,4 +151,15 @@
   "config": {
     "target": "catalogScope"
   }
+},
+{
+  "code": "pim/product/grid/grid",
+  "view": "view/product/grid/grid",
+  "connector": "view/product/grid/grid"
+},
+{
+  "code": "pim/product/grid/row",
+  "parent": "pim/product/grid/grid",
+  "view": "view/product/grid/row",
+  "connector": "view/product/grid/row"
 }]
