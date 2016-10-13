@@ -3,3 +3,4 @@ npm-debug.log
 .DS_Store
 static
 typings
+src/builder/modules.ts

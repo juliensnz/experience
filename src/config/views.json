@@ -152,4 +152,47 @@
   "config": {
     "target": "catalogScope"
   }
+},
+{
+  "code": "pim/product/edit/tabs/attributes/field/price-collection",
+  "view": "view/product/field/price-collection",
+  "connector": "view/product/field/price-collection",
+  "parent": "pim/product/edit/tabs/attributes",
+  "section": "fields",
+  "attribute_type": "akeneo-price-collection-field"
+},
+{
+  "code": "pim/product/edit/tabs/attributes/field/string",
+  "view": "view/product/field/string",
+  "parent": "pim/product/edit/tabs/attributes",
+  "section": "fields",
+  "attribute_type": "akeneo-text-field"
+},
+{
+  "code": "pim/product/edit/tabs/attributes/field/string",
+  "view": "view/product/field/string",
+  "parent": "pim/product/edit/tabs/attributes",
+  "section": "fields",
+  "attribute_type": "akeneo-textarea-field"
+},
+{
+  "code": "pim/product/edit/tabs/attributes/field/string",
+  "view": "view/product/field/string",
+  "parent": "pim/product/edit/tabs/attributes",
+  "section": "fields",
+  "attribute_type": "akeneo-multi-select-field"
+},
+{
+  "code": "pim/product/edit/tabs/attributes/field/string",
+  "view": "view/product/field/string",
+  "parent": "pim/product/edit/tabs/attributes",
+  "section": "fields",
+  "attribute_type": "akeneo-simple-select-field"
+},
+{
+  "code": "pim/product/edit/tabs/attributes/field/string",
+  "view": "view/product/field/string",
+  "parent": "pim/product/edit/tabs/attributes",
+  "section": "fields",
+  "attribute_type": "akeneo-media-uploader-field"
 }]

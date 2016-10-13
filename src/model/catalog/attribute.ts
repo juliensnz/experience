@@ -1,3 +1,4 @@
 export interface Attribute {
-  code: string
+  code: string,
+  field_type: string
 }

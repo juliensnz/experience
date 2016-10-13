@@ -11,6 +11,7 @@ import channelReducer from './reducer/catalog/channel';
 import attributeGroupsReducer from './reducer/catalog/attribute-group';
 import familyReducer from './reducer/catalog/family';
 import attributeReducer from './reducer/catalog/attribute';
+import currencyReducer from './reducer/catalog/currency';
 import contextReducer from './reducer/context';
 import tabsReducer from './reducer/view/tabs';
 import * as createLogger from 'redux-logger';
@@ -36,7 +37,8 @@ const store = createStore((state: any, action: any) => {
         locales: localeReducer,
         attributeGroups: attributeGroupsReducer,
         families: familyReducer,
-        attributes: attributeReducer
+        attributes: attributeReducer,
+        currencies: currencyReducer
       })
     })(state, action);
   },

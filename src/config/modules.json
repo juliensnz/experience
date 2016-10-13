@@ -1,0 +1,19 @@
+{
+  "view/channel/channel": "pim/view/channel/channel",
+  "view/common/state-listener": "pim/view/common/state-listener",
+  "view/common/save": "pim/view/common/save",
+  "view/common/delete": "pim/view/common/delete",
+  "view/common/tabs": "pim/view/common/tabs",
+  "view/common/tabs/history": "pim/view/common/tabs/history",
+  "view/channel/properties": "pim/view/channel/properties",
+  "view/channel/properties/general": "pim/view/channel/properties/general",
+  "view/channel/properties/conversion": "pim/view/channel/properties/conversion",
+  "view/product/edit/form": "pim/view/product/edit/form",
+  "view/product/edit/tabs/attributes": "pim/view/product/edit/tabs/attributes",
+  "view/product/edit/tabs/categories": "pim/view/product/edit/tabs/categories",
+  "view/product/edit/tabs/attributes/attribute-group": "pim/view/product/edit/tabs/attributes/attribute-group",
+  "view/common/context/locale-switcher": "pim/view/common/context/locale-switcher",
+  "view/common/context/scope-switcher": "pim/view/common/context/scope-switcher",
+  "view/product/field/price-collection": "pim/view/product/field/price-collection",
+  "view/product/field/string": "pim/view/product/field/string"
+}

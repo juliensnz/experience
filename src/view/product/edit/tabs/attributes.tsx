@@ -1,19 +1,32 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { childrenForSection } from 'pim/view/util/child';
-import { Value } from 'pim/model/product/value'
-import { Attribute } from 'pim/model/catalog/attribute'
+import { Value } from 'pim/model/product/value';
+import { Attribute } from 'pim/model/catalog/attribute';
 
-export const view = ({ values, childViews, onFieldChange }: { values: Value[], childViews: any, onFieldChange: any }) => {
+export const view = (
+  { values, childViews, attributes, onFieldChange }:
+  { values: Value[], childViews: any, attributes: Attribute[], onFieldChange: any }
+) => {
   const valueFields = values.filter((value: Value) => null !== value).map((value: Value) => {
+    const attribute = attributes.find((attribute: Attribute) => attribute.code === value.code);
+
+    if (!attribute) {
+      return null;
+    }
+
+    const FieldView = childViews.find((view: any) => {
+      return view.section &&
+        'fields' === view.section &&
+        view.attribute_type === attribute.field_type;
+    });
+
     return <div>
         { value.code } :
-        <input
-          value={value.data || ''}
-          onChange={ onFieldChange }
-          data-field={ value.code }
-          data-locale={ value.locale }
-          data-scope={ value.scope }
+        <FieldView.viewModule
+          value={value}
+          onFieldChange={ onFieldChange }
+          attribute={ attribute }
         />
       </div>;
     }
@@ -31,18 +44,17 @@ export const view = ({ values, childViews, onFieldChange }: { values: Value[], c
 export const connector = connect(
   (state: any) => {
     return {
-      values: getValues(state)
+      values: getValues(state),
+      attributes: state.catalog.attributes
     }
   },
   (dispatch: any) => {
     return {
-      onFieldChange: (event: any) => {
+      onFieldChange: (value: Value, attribute: Attribute) => {
         dispatch({
-          type: 'FIELD_CHANGED',
-          field: event.currentTarget.dataset.field,
-          data: event.currentTarget.value,
-          locale: event.currentTarget.dataset.locale ? event.currentTarget.dataset.locale : null,
-          scope: event.currentTarget.dataset.scope ? event.currentTarget.dataset.scope : null
+          type: 'VALUE_UPDATED',
+          value,
+          attribute
         });
       }
     }
@@ -79,7 +91,7 @@ const getValues = (state: any) : Value[] => {
 
     return Object.assign(
       {
-        code: attributeCode,
+        code: attribute.code,
         locale: attribute.localizable ? state.context.catalogLocale : null,
         scope: attribute.scopable ? state.context.catalogScope : null,
         data: null
