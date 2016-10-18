@@ -160,6 +160,5 @@
 {
   "code": "pim/product/grid/row",
   "parent": "pim/product/grid/grid",
-  "view": "view/product/grid/row",
-  "connector": "view/product/grid/row"
+  "view": "view/product/grid/row"
 }]
