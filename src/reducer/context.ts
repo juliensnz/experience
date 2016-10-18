@@ -3,8 +3,8 @@ export default (state: any = {}, action: any = {}) => {
     state = {
       uiLocale: 'en_US',
       catalogLocale: 'en_US',
-      catalogScope: 'mobile',
-      attributeGroup: 'marketing'
+      catalogScope: 'ecommerce',
+      attributeGroup: 'attr_gr_0'
     };
   }
 

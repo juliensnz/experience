@@ -50,7 +50,7 @@ export class view extends React.Component<
         <input
           value={ fieldValue ? fieldValue.data : '' }
           data-currency={ currencyCode }
-          onChange={this.currencyChanged}
+          onChange={ this.currencyChanged }
         />
       </div>;
     })
@@ -64,7 +64,8 @@ export class view extends React.Component<
 export const connector = connect(
   (state: any, oldProps: any) => {
     return Object.assign({}, oldProps, {
-      currencies: state.catalog.currencies
+      currencies: state.catalog.currencies,
+      value: oldProps.value.data ? oldProps.value : Object.assign({}, oldProps.value, {data: []})
     });
   },
   (dispatch: any) => {

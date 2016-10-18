@@ -1,5 +1,5 @@
 export interface Value {
-  code?: string,
+  code: string,
   locale?: string
   scope?: string
   data: any

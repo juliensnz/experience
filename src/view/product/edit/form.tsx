@@ -11,7 +11,7 @@ export class view extends React.Component<
   componentDidMount() {
     const { dispatch } = this.props;
 
-    dispatch(fetchProductIfNeeded(12));
+    dispatch(fetchProductIfNeeded(1));
   }
 
   render() {

@@ -106,7 +106,7 @@
   "section": "container",
   "config": {
     "label": "Attributes",
-    "fieldView": "pim/product/edit/tabs/attributes/field"
+    "fieldsView": "pim/product/edit/tabs/attributes/fields"
   }
 },
 {
@@ -135,6 +135,13 @@
   "section": "sidebar"
 },
 {
+  "code": "pim/product/edit/tabs/attributes/add-attribute",
+  "view": "view/product/edit/tabs/attributes/add-attribute",
+  "connector": "view/product/edit/tabs/attributes/add-attribute",
+  "parent": "pim/product/edit/tabs/attributes",
+  "section": "context"
+},
+{
   "code": "pim/product/edit/tabs/attributes/locale-switcher",
   "view": "view/common/context/locale-switcher",
   "connector": "view/common/context/locale-switcher",
@@ -155,51 +162,87 @@
   }
 },
 {
-  "code": "pim/product/edit/tabs/attributes/field",
-  "view": "view/product/edit/tabs/attributes/field",
+  "code": "pim/product/edit/tabs/attributes/fields",
+  "view": "view/product/edit/tabs/attributes/fields",
+  "connector": "view/product/edit/tabs/attributes/fields",
   "parent": "pim/product/edit/tabs/attributes",
-  "section": "fields"
+  "config": {
+    "fieldView": "pim/product/edit/tabs/attributes/fields/field"
+  }
+},
+{
+  "code": "pim/product/edit/tabs/attributes/fields/field",
+  "view": "view/product/edit/tabs/attributes/fields/field",
+  "parent": "pim/product/edit/tabs/attributes/fields"
 },
 {
   "code": "pim/product/edit/tabs/attributes/field/price-collection",
   "view": "view/product/field/price-collection",
   "connector": "view/product/field/price-collection",
-  "parent": "pim/product/edit/tabs/attributes/field",
+  "parent": "pim/product/edit/tabs/attributes/fields/field",
   "section": "fields",
   "attribute_type": "akeneo-price-collection-field"
 },
 {
   "code": "pim/product/edit/tabs/attributes/field/string",
   "view": "view/product/field/string",
-  "parent": "pim/product/edit/tabs/attributes/field",
+  "parent": "pim/product/edit/tabs/attributes/fields/field",
   "section": "fields",
   "attribute_type": "akeneo-text-field"
 },
 {
   "code": "pim/product/edit/tabs/attributes/field/string",
   "view": "view/product/field/string",
-  "parent": "pim/product/edit/tabs/attributes/field",
+  "parent": "pim/product/edit/tabs/attributes/fields/field",
   "section": "fields",
   "attribute_type": "akeneo-textarea-field"
 },
 {
   "code": "pim/product/edit/tabs/attributes/field/string",
   "view": "view/product/field/string",
-  "parent": "pim/product/edit/tabs/attributes/field",
+  "parent": "pim/product/edit/tabs/attributes/fields/field",
   "section": "fields",
   "attribute_type": "akeneo-multi-select-field"
 },
 {
   "code": "pim/product/edit/tabs/attributes/field/string",
   "view": "view/product/field/string",
-  "parent": "pim/product/edit/tabs/attributes/field",
+  "parent": "pim/product/edit/tabs/attributes/fields/field",
   "section": "fields",
   "attribute_type": "akeneo-simple-select-field"
 },
 {
   "code": "pim/product/edit/tabs/attributes/field/string",
   "view": "view/product/field/string",
-  "parent": "pim/product/edit/tabs/attributes/field",
+  "parent": "pim/product/edit/tabs/attributes/fields/field",
   "section": "fields",
   "attribute_type": "akeneo-media-uploader-field"
+},
+{
+  "code": "pim/product/edit/tabs/attributes/field/string",
+  "view": "view/product/field/string",
+  "parent": "pim/product/edit/tabs/attributes/fields/field",
+  "section": "fields",
+  "attribute_type": "akeneo-number-field"
+},
+{
+  "code": "pim/product/edit/tabs/attributes/field/string",
+  "view": "view/product/field/string",
+  "parent": "pim/product/edit/tabs/attributes/fields/field",
+  "section": "fields",
+  "attribute_type": "akeneo-datepicker-field"
+},
+{
+  "code": "pim/product/edit/tabs/attributes/field/string",
+  "view": "view/product/field/string",
+  "parent": "pim/product/edit/tabs/attributes/fields/field",
+  "section": "fields",
+  "attribute_type": "akeneo-metric-field"
+},
+{
+  "code": "pim/product/edit/tabs/attributes/field/string",
+  "view": "view/product/field/string",
+  "parent": "pim/product/edit/tabs/attributes/fields/field",
+  "section": "fields",
+  "attribute_type": "akeneo-switch-field"
 }]

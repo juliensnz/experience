@@ -1,6 +1,6 @@
 {
-  "name": "react-hot-boilerplate",
-  "version": "1.0.0",
+  "name": "AkeneoPim",
+  "version": "2.0.0",
   "description": "Boilerplate for ReactJS project with hot code reloading",
   "scripts": {
     "start": "node compile_modules.js && node server.js",
@@ -40,10 +40,10 @@
     "source-map-loader": "^0.1.5",
     "ts-loader": "^0.8.2",
     "webpack": "^1.12.2",
-    "webpack-dev-server": "^1.12.1"
+    "webpack-dev-server": "^1.12.1",
+    "circular-dependency-plugin": "^2.0.0"
   },
   "dependencies": {
-    "circular-dependency-plugin": "^2.0.0",
     "css-loader": "^0.25.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "json-loader": "^0.5.4",
@@ -52,10 +52,12 @@
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "react-redux": "^4.4.5",
+    "react-select": "^1.0.0-rc.2",
     "redux": "^3.6.0",
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.1.0",
     "style-loader": "^0.13.1",
+    "typescript": "^2.0.3",
     "whatwg-fetch": "^1.0.0"
   }
 }

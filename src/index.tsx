@@ -17,7 +17,9 @@ import tabsReducer from './reducer/view/tabs';
 import * as createLogger from 'redux-logger';
 
 declare var require: any;
+require('react-select/dist/react-select.css');
 require('pim/assets/style/style.less');
+
 
 // dev tools trick, should not be in prod.
 const myWindow: any = window;
@@ -44,7 +46,8 @@ const store = createStore((state: any, action: any) => {
   },
   {},
   compose(
-    applyMiddleware(thunk, logger),
+    // applyMiddleware(thunk, logger),
+    applyMiddleware(thunk),
     myWindow.devToolsExtension && myWindow.devToolsExtension()
   )
 );

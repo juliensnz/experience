@@ -16,5 +16,7 @@
   "view/common/context/scope-switcher": "pim/view/common/context/scope-switcher",
   "view/product/field/price-collection": "pim/view/product/field/price-collection",
   "view/product/field/string": "pim/view/product/field/string",
-  "view/product/edit/tabs/attributes/field": "pim/view/product/edit/tabs/attributes/field"
+  "view/product/edit/tabs/attributes/fields": "pim/view/product/edit/tabs/attributes/fields",
+  "view/product/edit/tabs/attributes/fields/field": "pim/view/product/edit/tabs/attributes/fields/field",
+  "view/product/edit/tabs/attributes/add-attribute": "pim/view/product/edit/tabs/attributes/add-attribute"
 }

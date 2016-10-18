@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { getLabel } from 'pim/utils/i18n';
-import { fetchAll } from 'pim/fetcher/attribute-group';
+import { fetchAttributeGroupsIfNeeded } from 'pim/action/attribute-group.ts'
 
 export class view extends React.Component<
   {
@@ -16,7 +16,8 @@ export class view extends React.Component<
 > {
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(fetchGroupsIfNeeded());
+
+    dispatch(fetchAttributeGroupsIfNeeded());
   }
 
   render() {
@@ -61,12 +62,3 @@ export const connector = connect((state: any) => {
   }
 });
 
-const fetchGroupsIfNeeded = () => (dispatch: any, getState: any) => {
-  if (0 === getState().catalog.attributeGroups.length) {
-    dispatch({type: 'FETCH_GROUP_REQUEST'});
-
-    fetchAll().then((groups) => {
-      dispatch({type: 'FETCH_GROUP_SUCCESS', groups})
-    })
-  }
-}
