@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
+import { Modal } from 'react-modal'
 import { Product } from 'pim/model/product/product'
 import { searchProductsRequest } from 'pim/action/product'
 
