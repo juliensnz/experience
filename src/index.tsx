@@ -46,8 +46,8 @@ const store = createStore((state: any, action: any) => {
   },
   {},
   compose(
-    // applyMiddleware(thunk, logger),
-    applyMiddleware(thunk),
+    applyMiddleware(thunk, logger),
+    // applyMiddleware(thunk),
     myWindow.devToolsExtension && myWindow.devToolsExtension()
   )
 );

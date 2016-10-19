@@ -13,6 +13,22 @@ export default (state: any = {}, action: any = {}) => {
 
       state = newState;
     break;
+    case 'ADD_ATTRIBUTE':
+      if (undefined === state.values[action.attributeCode]) {
+        let newState = Object.assign({}, state);
+        newState.values[action.attributeCode] = [];
+
+        state = newState;
+      }
+    break;
+    case 'REMOVE_ATTRIBUTE':
+      if (undefined !== state.values[action.attributeCode]) {
+        let newState = Object.assign({}, state);
+
+        delete newState.values[action.attributeCode];
+
+        state = newState;
+      }
   }
 
   return state;

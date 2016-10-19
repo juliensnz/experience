@@ -4,16 +4,18 @@ import { Value } from 'pim/model/product/value';
 import { Attribute } from 'pim/model/catalog/attribute';
 import { fetchAttributesFromGroupIfNeeded } from 'pim/action/attribute';
 import { AttributeGroup } from 'pim/model/catalog/attribute-group';
+import { getProductAttributes, getAttribute, getFamily } from 'pim/selector/product/attribute'
 
 export class view extends React.Component<
   {
     dispatch: any,
     currentGroup: string,
-    values: Value[],
+    fields: any[],
     childViews: any,
     config: any,
     attributes: {[key: string]: Attribute},
-    onFieldChange: any
+    onFieldChange: any,
+    removeAttribute: any
   },
   {}
 > {
@@ -32,22 +34,25 @@ export class view extends React.Component<
   }
 
   render() {
-    const { values, childViews, config, attributes, onFieldChange, currentGroup }:
-      { values: Value[], childViews: any, config: any, attributes: {[key: string]: Attribute}, onFieldChange: any, currentGroup: string } = this.props;
+    const { fields, childViews, config, attributes, onFieldChange, currentGroup, removeAttribute }:
+      {
+        fields: any[],
+        childViews: any,
+        config: any,
+        attributes: {[key: string]: Attribute},
+        currentGroup: string,
+        onFieldChange: any,
+        removeAttribute: any
+      } = this.props;
 
     const FieldView = childViews.find((view: any) => {
       return config.config.fieldView === view.code
     });
-    const valueFields = values.filter((value: Value) => null !== value).map((value: Value) => {
-      const attribute = attributes[value.code];
-      if (!attribute) {
-        return null;
-      }
-
+    const valueFields = fields.map((field: any) => {
       return <FieldView.viewModule
-        value={value}
+        field={field}
         onFieldChange={ onFieldChange }
-        attribute={ attribute }
+        removeAttribute={ removeAttribute }
       />;
     }).filter((view: any) => null !== view);
 
@@ -60,7 +65,7 @@ export class view extends React.Component<
 export const connector = connect(
   (state: any) => {
     return {
-      values: getValues(state),
+      fields: getValues(state),
       attributes: state.catalog.attributes,
       currentGroup: state.context.attributeGroup,
     }
@@ -74,42 +79,42 @@ export const connector = connect(
           attribute
         });
       },
+      removeAttribute: (attributeCode: string) => {
+        dispatch({
+          type: 'REMOVE_ATTRIBUTE',
+          attributeCode
+        });
+      },
       dispatch
     }
   }
 );
 
-const getValues = (state: any) : Value[] => {
+const getValues = (state: any) : any[] => {
   if (0 === state.catalog.attributeGroups.length) {
     return [];
   }
 
-  const group = getCurrentAttributeGroup(state);
-
-  if (!group) {
-    return [];
-  }
+  const attributes = getProductAttributes(state).map((attributeCode: string) => {
+    return getAttribute(state, attributeCode);
+  }).filter((attribute: Attribute) => undefined !== attribute);
 
   if (!state.model.values) {
     return [];
   }
 
-  return group.attributes.map((attributeCode: string) => {
-    const attribute = state.catalog.attributes[attributeCode];
-
-    if (!attribute) {
-      return null;
-    }
-
-    const values = state.model.values[attributeCode]
-    const value = values ? state.model.values[attributeCode].find((value: Value) => {
+  return attributes.filter(function(attribute: Attribute) {
+      return state.context.attributeGroup === attribute.group_code;
+  }).map((attribute: Attribute) => {
+    const values = state.model.values[attribute.code]
+    const value = values ? state.model.values[attribute.code].find((value: Value) => {
       const locale = null === value.locale || value.locale === state.context.catalogLocale;
       const scope  = null === value.scope || value.scope === state.context.catalogScope;
 
       return locale && scope;
     }) : null;
 
-    return Object.assign(
+    const fieldValue = Object.assign(
       {
         code: attribute.code,
         locale: attribute.localizable ? state.context.catalogLocale : null,
@@ -118,7 +123,13 @@ const getValues = (state: any) : Value[] => {
       },
       value ? value : {}
     );
-  }).filter((value: any) => value);
+
+    return {
+      value: fieldValue,
+      attribute,
+      optionnal: !getFamily(state, state.model.family).attributes.includes(attribute.code)
+    }
+  });
 }
 
 const getCurrentAttributeGroup = (state: any) => {

@@ -4,10 +4,7 @@ import { connect } from 'react-redux';
 import { Family } from 'pim/model/catalog/family';
 import { Attribute } from 'pim/model/catalog/attribute';
 import { search } from 'pim/fetcher/attribute';
-
-function logChange(val: any) {
-  console.log('add attribute');
-}
+import { getProductAttributes } from 'pim/selector/product/attribute';
 
 var currentSearch = '';
 
@@ -21,7 +18,6 @@ const getOptions = (input: string, excludedIdentifiers: string[]) => {
     excluded_identifiers: excludedIdentifiers
   }).then((attributes: Attribute[]) => {
     if (currentSearch !== requestSearch) {
-      console.log('aborted');
       return null;
     }
 
@@ -40,28 +36,32 @@ const getOptions = (input: string, excludedIdentifiers: string[]) => {
 export class view extends React.Component<
   {
     selected: string[],
-    dispatch: any
+    addAttribute: any
   },
   {}
 > {
   render() {
-    const { selected }: {selected: string[]} = this.props;
+    const { selected, addAttribute }: {selected: string[], addAttribute: any} = this.props;
 
     return <Select.Async
-      value={selected}
-      multi={ true }
+      autoload={false}
       loadOptions={ (input: string) => { return getOptions(input, selected) } }
-      onChange={ logChange }
+      onChange={ addAttribute }
     />
-
   }
 }
 
 export const connector = connect(
   (state: any) => {
-    console.log(getSelected(state));
     return {
-      selected: getSelected(state)
+      selected: getProductAttributes(state)
+    }
+  },
+  (dispatch: any) => {
+    return {
+      addAttribute: (option: any) => {
+        dispatch({type: 'ADD_ATTRIBUTE', attributeCode: option.value});
+      }
     }
   }
 );
